@@ -18,6 +18,8 @@ public abstract class Tile
 	
 	/** TILE TYPE CONSTANTS */
 	public static final int TILE_AIR	= 0;	/**< Air tile type */
+	public static final int TILE_KEY	= 2;	/**< Key tile type */
+	public static final int TILE_STAIR =  3;	/**< Stair tile type */
 	public static final int TILE_WALL	= 4; 	/**< Wall tile type */
 	public static final int TILE_CORNER = 9;	/** Wall corner */
 	

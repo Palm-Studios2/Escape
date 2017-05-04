@@ -20,6 +20,7 @@ import com.palmstudios.system.GamePanel;
 import com.palmstudios.system.GameState;
 import com.palmstudios.system.Map;
 import com.palmstudios.system.Tile;
+import com.palmstudios.tile.AirTile;
 
 /**
  * @author Jesse
@@ -31,6 +32,7 @@ public class TestState extends GameState
 	private Player player = new Player("player");
 	private int timer = 0;
 	private int ouchies = 0;
+	private int keys = 0;
 	private int collisionTick = 0;
 	
 	Enemy[] enemies = new Enemy[] {
@@ -64,18 +66,26 @@ public class TestState extends GameState
 		}
 		timer++;
 		collisionCheck();
-		System.out.println(collisionTick);
+		if(map.getTileAt((player.getX() / Tile.TILE_SIZE), ((player.getY() + 32)/ Tile.TILE_SIZE)).getType() == Tile.TILE_KEY){
+			map.setToAir((player.getX() / Tile.TILE_SIZE), ((player.getY() + 32)/ Tile.TILE_SIZE));
+			keys = 1;
+		}
+		if(map.getTileAt((player.getX() / Tile.TILE_SIZE), ((player.getY() + 32)/ Tile.TILE_SIZE)).getType() == Tile.TILE_STAIR && keys == 1){
+			gsm.changeState(GameStateManager.MENU_STATE);
+			gsm.unloadState(GameStateManager.TEST_STATE);
+		}
 	}
 
 	@Override
 	public void draw(Graphics2D g2d)
 	{
 		map.draw(g2d);
-		player.draw(g2d);
 		enemies[0].draw(g2d);
 		enemies[1].draw(g2d);
 		enemies[2].draw(g2d);
+		player.draw(g2d);
 		g2d.drawString("Ouchies:" + ouchies, 0, 16);
+		g2d.drawString("Key:" + keys, 200, 16);
 	}
 
 	@Override

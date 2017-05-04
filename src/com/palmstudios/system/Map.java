@@ -15,7 +15,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.palmstudios.tile.AirTile;
+import com.palmstudios.tile.KeyTile;
 import com.palmstudios.tile.NullTile;
+import com.palmstudios.tile.StairTile;
 import com.palmstudios.tile.WallTile;
 
 public class Map
@@ -91,6 +93,12 @@ public class Map
 					case Tile.TILE_CORNER:
 						t = new WallTile(WallTile.CORNER);
 						break;
+					case Tile.TILE_KEY:
+						t = new KeyTile();
+						break;
+					case Tile.TILE_STAIR:
+						t = new StairTile();
+						break;
 					default:
 						t = new NullTile();
 						System.err.println("INVALID TILE NUMBER!!!");
@@ -139,6 +147,12 @@ public class Map
 	public Tile getTileAt(int tileX, int tileY)
 	{
 		return map[tileX][tileY];
+	}
+	
+	//Allows us to change a tile to an air tile
+	//Eg for key tiles
+	public void setToAir(int tileX, int tileY){
+		map[tileX][tileY] = new AirTile();
 	}
 	
 }
