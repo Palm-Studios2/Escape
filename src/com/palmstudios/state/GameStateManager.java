@@ -23,7 +23,7 @@ public class GameStateManager
 	public static final int SPLASH_STATE 	= 0;
 	public static final int MENU_STATE 		= 1;
 	public static final int TEST_STATE 		= 2;
-	public static final int LEVEL_TWO		= 4;
+	public static final int LEVEL_TWO		= 3;
 	public static final int DEFEAT_STATE	= 4;
 	public static final int VICTORY_STATE	= 4;
 	
